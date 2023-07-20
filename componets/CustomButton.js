@@ -20,15 +20,30 @@ const CustomButton = ({ onPress, text, type = 'PRIMARY' }) => {
 };
 
 const styles = StyleSheet.create({
+  // container: {
+  //   width: '90%',
+  //   padding: 16,
+  //   marginVertical: 5,
+  //   alignItems: 'center',
+  //   borderRadius: 5,
+  // },
   container: {
     width: '90%',
     padding: 16,
+    paddingVertical: 20,
     marginVertical: 5,
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 12,
+    marginTop: 30,
   },
   container_PRIMARY: {
     backgroundColor: COLORS.primary,
+  },
+
+  container_SECONDARY: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: COLORS.primary,
   },
 
   container_TERTIAY: {},
@@ -37,9 +52,18 @@ const styles = StyleSheet.create({
     color: COLORS.white,
   },
 
+  text_PRIMARY: {
+    fontSize: 16,
+  },
+
+  text_SECONDARY: {
+    color: COLORS.primary,
+  },
+
   text_TERTIAY: {
     fontWeight: 'normal',
     color: COLORS.gray,
+    marginVertical: -30,
   },
 });
 

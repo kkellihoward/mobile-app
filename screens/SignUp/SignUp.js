@@ -7,6 +7,8 @@ import {
   ScrollView,
 } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useForm, Controller, FormProvider } from 'react-hook-form';
 
 import CustomInput from '../../componets/CustomInput';
 import CustomButton from '../../componets/CustomButton';
@@ -19,26 +21,40 @@ const COLORS = {
 };
 
 const { width, height } = Dimensions.get('window');
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%])./;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const SignUp = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+  const pwd = watch('password');
 
-  const onSignInPressed = () => {
-    console.warn('signIn');
+  const navigation = useNavigation();
+
+  const onSignInPressed = (data) => {
+    console.log(data);
+    navigation.navigate('SignIn');
   };
 
-  const onSignUpPressed = () => {
-    console.warn('Sign UP');
+  const onSignUpPressed = (data) => {
+    console.log(data);
+    //logic for validation
+
+    navigation.navigate('ConfirmEmail');
   };
 
   const onTermsPressed = () => {
+    //add page
     console.warn('Terms of use');
   };
 
   const onPolicyUpPressed = () => {
+    //add page
     console.warn('privacy policy');
   };
 
@@ -46,25 +62,75 @@ const SignUp = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.root}>
         <Text style={styles.title}>Create an account</Text>
+
         <CustomInput
+          name="username"
           placeholder="Username"
-          value={userName}
-          setValue={setUserName}
+          control={control}
+          rules={{
+            required: 'Username is required',
+
+            pattern: {
+              value: USER_REGEX,
+              message:
+                'Must begin with a letter. Letters, numbers, underscores, hyphens allowed',
+            },
+            minLength: {
+              value: 4,
+              message: 'Username should be at least 4 characters long',
+            },
+            maxLength: {
+              value: 24,
+              message: 'Username should be max 24 characters long',
+            },
+          }}
         />
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput
+          name="emil"
+          placeholder="Email"
+          control={control}
+          rules={{
+            required: 'Email is required',
+            pattern: {
+              value: EMAIL_REGEX,
+              message: 'Enter a valid email address',
+            },
+          }}
+        />
+        <CustomInput
+          name="password"
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
+          control={control}
           secureTextEntry={true}
+          rules={{
+            required: 'Password is required',
+            pattern: {
+              value: PWD_REGEX,
+              message:
+                'Must include uppercase and lowercase letters, a number and a special character' +
+                '. Allowed special characters: ! # @ $ %',
+            },
+            minLength: {
+              value: 8,
+              message: 'Password should be at least 8 characters long',
+            },
+            maxLength: {
+              value: 24,
+              message: 'Password should be max 24 characters long',
+            },
+          }}
         />
         <CustomInput
+          name="repate-password"
           placeholder="Confirm Password"
-          value={passwordRepeat}
-          setValue={setPasswordRepeat}
+          control={control}
           secureTextEntry={true}
+          rules={{
+            required: 'Password is required',
+            validate: (value) => value === pwd || 'Password do not match',
+          }}
         />
-        <CustomButton text="Sign Up" onPress={onSignUpPressed} />
+        <CustomButton text="Sign Up" onPress={handleSubmit(onSignUpPressed)} />
 
         <Text style={styles.text}>
           By signing, you Confirm that you accept our{' '}

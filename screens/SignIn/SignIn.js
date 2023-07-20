@@ -6,8 +6,11 @@ import {
   SafeAreaView,
   Dimensions,
   ScrollView,
+  TextInput,
 } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useForm, Controller, FormProvider } from 'react-hook-form';
 
 import Logo from '../../assets/images/logoSign.png';
 import CustomInput from '../../componets/CustomInput';
@@ -16,36 +19,49 @@ import CustomButton from '../../componets/CustomButton';
 const { width, height } = Dimensions.get('window');
 
 const SignIn = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const navigation = useNavigation();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  //console.log(errors);
+  const methods = useForm();
 
-  const onSignInPressed = () => {
-    console.warn('signIn');
+  const onSignInPressed = (data, errors) => {
+    console.log(data);
+    //validate
+
+    navigation.navigate('Home');
   };
 
   const onForgetPasswordPressed = () => {
-    console.warn('forgetPassword');
+    //logic
+    navigation.navigate('ForgotPassword');
   };
-  onSignUpPressed;
+
   const onSignUpPressed = () => {
-    console.warn('Sign UP');
+    navigation.navigate('SignUp');
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.root}>
         <Image source={Logo} style={styles.logo} resizeMode="cover"></Image>
+
         <CustomInput
+          name="username"
           placeholder="Username"
-          value={userName}
-          setValue={setUserName}
+          control={control}
+          rules={{ required: 'Username is required' }}
         />
         <CustomInput
+          name="password"
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
+          control={control}
           secureTextEntry={true}
+          rules={{ required: 'Password is required' }}
         />
-        <CustomButton text="Sign In" onPress={onSignInPressed} />
+        <CustomButton text="Sign In" onPress={handleSubmit(onSignInPressed)} />
         <CustomButton
           text="Forget password?"
           onPress={onForgetPasswordPressed}
@@ -55,6 +71,7 @@ const SignIn = () => {
           text=" Don't have an account? create one"
           onPress={onSignUpPressed}
           type="TERTIAY"
+          style={styles.create}
         />
       </SafeAreaView>
     </ScrollView>
@@ -72,6 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     width: width,
     height: height * 0.3,
+    marginBottom: -50,
   },
 });
 
