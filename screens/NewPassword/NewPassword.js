@@ -34,7 +34,7 @@ const NewPassword = () => {
 
   const onSubmitPressed = () => {
     //logic
-    navigation.navigate('Home');
+    navigation.navigate('HomeTabs');
   };
 
   const onSignInPressed = () => {

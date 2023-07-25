@@ -34,7 +34,7 @@ const ConfirmEmail = () => {
   const onConfirmPressed = (data) => {
     //logic
     console.log(data);
-    navigation.navigate('Home');
+    navigation.navigate('HomeTabs');
   };
   const onSignInPressed = () => {
     //logic
