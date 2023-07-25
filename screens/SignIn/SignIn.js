@@ -32,7 +32,7 @@ const SignIn = () => {
     console.log(data);
     //validate
 
-    navigation.navigate('Home');
+    navigation.navigate('HomeTabs');
   };
 
   const onForgetPasswordPressed = () => {
