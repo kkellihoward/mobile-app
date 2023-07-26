@@ -9,10 +9,13 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import CustomEventCard from '../componets/CustomEventCard';
+
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text
+      <CustomEventCard />
+      {/* <Text
         style={{
           justifyContent: 'center',
           textAlign: 'center',
@@ -20,7 +23,7 @@ const Home = () => {
         }}
       >
         Home
-      </Text>
+      </Text> */}
     </SafeAreaView>
   );
 };
