@@ -24,11 +24,12 @@ function HomeTabs() {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: COLORS.primary,
+          backgroundColor: '#433E3E',
+          backgroundColor: 'black',
           elevation: 0,
-          height: 100,
-          borderTopLeftRadius: 15,
-          borderTopRightRadius: 15,
+          height: 75,
+          // borderTopLeftRadius: 15,
+          // borderTopRightRadius: 15,
         },
       }}
     >

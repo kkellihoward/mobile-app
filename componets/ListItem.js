@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { ScrollView, View, StyleSheet, Text, Dimensions } from 'react-native';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Pressable,
+  Alert,
+} from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -15,14 +23,15 @@ const COLORS = {
   white: '#fff',
   gray: '#433E3E',
   postGray: '#696868',
-  OnClickColor: '#B28FE5',
+  DateColor: '#B28FE5',
   cardColor: '#9969DD',
 };
 const { width, height } = Dimensions.get('window');
-const LIST_ITEM_HEIGHT = 70;
+const LIST_ITEM_HEIGHT = 90;
 const TRANSLATE_X_THRESHOLD = -width * 0.2;
 
 const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
+  const dateSplit = event.date.split(',');
   const translateX = useSharedValue(0);
   const itemHeight = useSharedValue(LIST_ITEM_HEIGHT);
   const marginVertical = useSharedValue(10);
@@ -69,8 +78,21 @@ const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
       },
     ],
   }));
+
+  const onPressCard = (event) => {
+    Alert.alert('Event Description', event.description, {
+      text: 'Ok',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'ok',
+    });
+  };
+
   return (
-    <Animated.View style={[styles.eventContainer, rEventContainerStyle]}>
+    <Animated.View
+      style={[styles.eventContainer, rEventContainerStyle]}
+      onStartShouldSetResponder={() => console.log('View click')}
+    >
+      {/* <Pressable style={styles.Temp} onPress={() => onPressCard(event)}> */}
       <Animated.View style={[styles.eventIcon, rIconContainerStyle]}>
         <Ionicons
           name="ios-checkmark-circle-outline"
@@ -78,14 +100,31 @@ const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
           color="green"
         />
       </Animated.View>
+
       <PanGestureHandler
         simultaneousHandlers={simultaneousHandlers}
         onGestureEvent={pangGesture}
       >
         <Animated.View style={[styles.event, rStyle]}>
+          <View style={styles.squareDate}>
+            <Text
+              // adjustsFontSizeToFit={true}
+              // numberOfLines={2}
+              style={styles.DateText}
+            >
+              <Text style={[styles.squareDate, styles.squareDateExstra]}>
+                {' '}
+                {dateSplit[1]}{' '}
+              </Text>
+              {'\n'}
+
+              {dateSplit[0].substring(0, 3)}
+            </Text>
+          </View>
           <Text style={styles.eventTitle}>{event.title}</Text>
         </Animated.View>
       </PanGestureHandler>
+      {/* </Pressable> */}
     </Animated.View>
   );
 };
@@ -94,11 +133,10 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  event: {
-    width: '90%',
-    height: LIST_ITEM_HEIGHT,
-    backgroundColor: 'red',
 
+  event: {
+    width: '85%',
+    height: LIST_ITEM_HEIGHT,
     justifyContent: 'center',
     paddingLeft: 20,
     backgroundColor: COLORS.cardColor,
@@ -108,12 +146,17 @@ const styles = StyleSheet.create({
       width: 0,
       height: 20,
     },
+
     shadowRadius: 10,
     elevation: 5,
   },
   eventTitle: {
     fontSize: 18,
     color: COLORS.white,
+    marginLeft: LIST_ITEM_HEIGHT - 20,
+    marginEnd: 10,
+    fontWeight: 'bold',
+    lineHeight: 25,
   },
   eventIcon: {
     height: LIST_ITEM_HEIGHT,
@@ -122,6 +165,33 @@ const styles = StyleSheet.create({
     right: '7%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  DateText: {
+    color: COLORS.white,
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontSize: 18,
+    textAlignVertical: 'center',
+    fontWeight: '800',
+    textTransform: 'capitalize',
+  },
+  squareDateExstra: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  squareDate: {
+    justifyContent: 'center',
+    position: 'absolute',
+    width: LIST_ITEM_HEIGHT - 30,
+    height: LIST_ITEM_HEIGHT - 30,
+    backgroundColor: COLORS.DateColor,
+    left: 15,
+    borderRadius: 10,
+    shadowOpacity: 0.15,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
   },
 });
 export default ListItem;

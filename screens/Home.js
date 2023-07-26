@@ -13,7 +13,7 @@ import CustomEventCard from '../componets/CustomEventCard';
 
 const Home = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <CustomEventCard />
       {/* <Text
         style={{
@@ -24,7 +24,7 @@ const Home = () => {
       >
         Home
       </Text> */}
-    </SafeAreaView>
+    </View>
   );
 };
 
