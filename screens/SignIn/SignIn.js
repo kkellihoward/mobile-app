@@ -11,6 +11,7 @@ import {
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
+import axios from 'axios';
 
 import Logo from '../../assets/images/logoSign.png';
 import CustomInput from '../../componets/CustomInput';
@@ -32,7 +33,31 @@ const SignIn = () => {
     console.log(data);
     //validate
 
-    navigation.navigate('HomeTabs');
+    try {
+      const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/signin'; 
+      
+      // parameters going in need to be named email and password for API to accept them
+      const data = { email, password };
+  
+      const response = await axios.post(apiUrl, data, { headers: {
+        'Content-Type': 'application/json'
+        }}
+      );
+  
+      if(response.status === 200)
+      {
+        navigation.navigate('HomeTabs');
+      }
+      // Handle the response from the API as needed
+      console.log('API Response:', response.data);
+      
+      // You can return the response data or handle it further as per your requirements
+      return response.data;
+    } catch (error) {
+      // Handle any errors that occurred during the API call
+      console.error('API Error:', error);
+      // throw error;
+    }
   };
 
   const onForgetPasswordPressed = () => {
@@ -49,10 +74,10 @@ const SignIn = () => {
         <Image source={Logo} style={styles.logo} resizeMode="cover"></Image>
 
         <CustomInput
-          name="username"
-          placeholder="Username"
+          name="Email"
+          placeholder="Email"
           control={control}
-          rules={{ required: 'Username is required' }}
+          rules={{ required: 'Email is required' }}
         />
         <CustomInput
           name="password"
