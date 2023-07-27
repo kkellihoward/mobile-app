@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
+import axios from 'axios';
 
 import CustomInput from '../../componets/CustomInput';
 import CustomButton from '../../componets/CustomButton';
@@ -45,7 +46,31 @@ const SignUp = () => {
     console.log(data);
     //logic for validation
 
-    navigation.navigate('ConfirmEmail');
+        try {
+                const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/createAccount'; 
+                const username = user
+                const password = pwd
+                const data = { email, username, password };
+            
+                const response = await axios.post(apiUrl, data, { headers: {
+                  'Content-Type': 'application/json'
+                  }}
+                );
+            
+                if(response.status === 200)
+                {
+                    navigation.navigate('ConfirmEmail');
+                }
+                // Handle the response from the API as needed
+                console.log('API Response:', response.data);
+                
+                // You can return the response data or handle it further as per your requirements
+                return response.data;
+            } catch (error) {
+            // Handle any errors that occurred during the API call
+            console.error('API Error:', error);
+            // throw error;
+            }
   };
 
   const onTermsPressed = () => {
