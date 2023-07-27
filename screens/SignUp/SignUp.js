@@ -48,8 +48,6 @@ const SignUp = () => {
 
         try {
                 const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/createAccount'; 
-                const username = user
-                const password = pwd
                 const data = { email, username, password };
             
                 const response = await axios.post(apiUrl, data, { headers: {
