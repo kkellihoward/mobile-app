@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Component } from 'react';
 import {
   ScrollView,
   View,
@@ -7,7 +7,10 @@ import {
   Dimensions,
   Pressable,
   Alert,
+  TouchableWithoutFeedback,
+  Modal,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -17,7 +20,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
-
+import ModalEvent from '../componets/ModalEvent';
+import { render } from 'react-dom';
 const COLORS = {
   primary: '#7f44d4',
   white: '#fff',
@@ -29,8 +33,13 @@ const COLORS = {
 const { width, height } = Dimensions.get('window');
 const LIST_ITEM_HEIGHT = 90;
 const TRANSLATE_X_THRESHOLD = -width * 0.2;
+const lastTap = null;
+let isDouble = 0;
 
 const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
+  const [modalComponentVisibility, setModalComponentVisibility] =
+    useState(false);
+
   const dateSplit = event.date.split(',');
   const translateX = useSharedValue(0);
   const itemHeight = useSharedValue(LIST_ITEM_HEIGHT);
@@ -79,53 +88,62 @@ const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
     ],
   }));
 
-  const onPressCard = (event) => {
-    Alert.alert('Event Description', event.description, {
-      text: 'Ok',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'ok',
-    });
+  // new
+  const DoubleTap = () => {
+    setModalComponentVisibility(false);
+    const now = Date.now();
+    const DOUBLE_PRESS_DELAY = 300;
+    if (this.lastTap && now - this.lastTap < DOUBLE_PRESS_DELAY) {
+      setModalComponentVisibility(true);
+    } else {
+      this.lastTap = now;
+    }
   };
 
   return (
-    <Animated.View
-      style={[styles.eventContainer, rEventContainerStyle]}
-      onStartShouldSetResponder={() => console.log('View click')}
-    >
-      {/* <Pressable style={styles.Temp} onPress={() => onPressCard(event)}> */}
-      <Animated.View style={[styles.eventIcon, rIconContainerStyle]}>
-        <Ionicons
-          name="ios-checkmark-circle-outline"
-          size={LIST_ITEM_HEIGHT * 0.5}
-          color="green"
+    <Pressable onPress={DoubleTap}>
+      {modalComponentVisibility && (
+        <ModalEvent
+          description={event.description}
+          invitees={event.invitees}
+          event={event}
         />
-      </Animated.View>
+      )}
 
-      <PanGestureHandler
-        simultaneousHandlers={simultaneousHandlers}
-        onGestureEvent={pangGesture}
-      >
-        <Animated.View style={[styles.event, rStyle]}>
-          <View style={styles.squareDate}>
-            <Text
-              // adjustsFontSizeToFit={true}
-              // numberOfLines={2}
-              style={styles.DateText}
-            >
-              <Text style={[styles.squareDate, styles.squareDateExstra]}>
-                {' '}
-                {dateSplit[1]}{' '}
-              </Text>
-              {'\n'}
-
-              {dateSplit[0].substring(0, 3)}
-            </Text>
-          </View>
-          <Text style={styles.eventTitle}>{event.title}</Text>
+      <Animated.View style={[styles.eventContainer, rEventContainerStyle]}>
+        <Animated.View style={[styles.eventIcon, rIconContainerStyle]}>
+          <Ionicons
+            name="ios-checkmark-circle-outline"
+            size={LIST_ITEM_HEIGHT * 0.5}
+            color="green"
+          />
         </Animated.View>
-      </PanGestureHandler>
-      {/* </Pressable> */}
-    </Animated.View>
+
+        <PanGestureHandler
+          simultaneousHandlers={simultaneousHandlers}
+          onGestureEvent={pangGesture}
+        >
+          <Animated.View style={[styles.event, rStyle]}>
+            <View style={styles.squareDate}>
+              <Text
+                // adjustsFontSizeToFit={true}
+                // numberOfLines={2}
+                style={styles.DateText}
+              >
+                <Text style={[styles.squareDate, styles.squareDateExstra]}>
+                  {' '}
+                  {dateSplit[1]}{' '}
+                </Text>
+                {'\n'}
+
+                {dateSplit[0].substring(0, 3)}
+              </Text>
+            </View>
+            <Text style={styles.eventTitle}>{event.title}</Text>
+          </Animated.View>
+        </PanGestureHandler>
+      </Animated.View>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({

@@ -1,5 +1,12 @@
 import { useCallback, useRef, useState } from 'react';
-import { View, StyleSheet, Text, Dimensions, Image } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import ListItem from './ListItem';
 import { useFonts } from 'expo-font';
@@ -10,39 +17,47 @@ export const EVENTS = [
     date: 'August,10,2023',
     description: 'TechXpo 2023: Unveiling the Future',
     id: '0',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Gastronomy Fest: A Culinary Extravaganza',
-    description: 'TechXpo 2023: Unveiling the Future',
+    description:
+      'TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future',
     date: 'July,28,2023',
     id: '1',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Artisanal Crafts Fair: Celebrating Creativity',
     description: 'TechXpo 2023: Unveiling the Future',
     date: 'September,17,2023',
     id: '2',
+    invitees: ['1', ['john1', 'john2', 'john3', 'john4', 'john5']],
   },
   {
     title: 'Global Sustainability Summit 2023',
     description: 'TechXpo 2023: Unveiling the Future',
     date: 'october,7,2023',
     id: '3',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     date: 'October,7,2023',
     id: '4',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     date: 'October,7,2023',
     id: '5',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     date: 'October,7,2023',
     id: '6',
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
@@ -79,10 +94,6 @@ const COLORS = {
 };
 
 const CustomEventCard = () => {
-  const [fontsLoaded] = useFonts({
-    'Robot-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
-  });
-
   const onDismiss = useCallback((event) => {
     setEvent((event) => event.filter((item) => item.id !== event.id));
   }, []);
@@ -93,8 +104,6 @@ const CustomEventCard = () => {
       <View style={styles.topContainer}>
         <Text style={styles.allEventText}>All {'\n'}Events</Text>
       </View>
-
-      {/* <Text style={styles.eventText}>Events</Text> */}
       <ScrollView style={{ flex: 1 }} ref={scrollRef}>
         {event.map((event) => (
           <ListItem

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -7,19 +7,19 @@ import {
   View,
   ImageBackground,
   StyleSheet,
-} from "react-native";
-
+} from 'react-native';
+import ModalEvent from '../componets/ModalEvent';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text
         style={{
-          justifyContent: "center",
-          textAlign: "center",
-          color: "black",
+          justifyContent: 'center',
+          textAlign: 'center',
+          color: 'black',
         }}
       >
-        post 
+        post
       </Text>
     </SafeAreaView>
   );
@@ -27,10 +27,10 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     flex: 1,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
 });
 

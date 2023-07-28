@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Dimensions,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -37,12 +38,23 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   const onSignInPressed = (data) => {
-    console.log(data);
     navigation.navigate('SignIn');
   };
 
-  const onSignUpPressed = (data) => {
-    console.log(data);
+  const onSignUpPressed = (data, errors) => {
+    //   data.preventDefault();
+    //   const formData = new FormData(data.currentTarget);
+    //   const username = formData.get('username');
+    //   const password = formData.get('password');
+    //   const email = formData.get('email');
+    //   console.log(username);
+    //   console.log(password);
+    //   console.log(email);
+    // } catch (err) {
+    //   // handle rejection
+    //   console.error(err);
+    // }
+
     //logic for validation
 
     navigation.navigate('ConfirmEmail');
@@ -86,7 +98,7 @@ const SignUp = () => {
           }}
         />
         <CustomInput
-          name="emil"
+          name="email"
           placeholder="Email"
           control={control}
           rules={{

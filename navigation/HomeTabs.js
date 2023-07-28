@@ -59,7 +59,7 @@ function HomeTabs() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Notifications"
         component={Notifications}
         options={{
@@ -84,7 +84,7 @@ function HomeTabs() {
             </View>
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="PostScreen"
         component={PostScreen}

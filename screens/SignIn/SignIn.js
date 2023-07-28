@@ -29,7 +29,21 @@ const SignIn = () => {
   const methods = useForm();
 
   const onSignInPressed = (data, errors) => {
-    console.log(data);
+    // try {
+    //   data.preventDefault();
+    //   const formData = new FormData(data.currentTarget);
+
+    //   const username = formData.get('username');
+    //   const password = formData.get('password');
+
+    //   console.log(username);
+    //   console.log(password);
+    // } catch (err) {
+    //   // handle rejection
+    //   console.error(err);
+    // }
+
+    //console.log(data);
     //validate
 
     navigation.navigate('HomeTabs');
@@ -61,7 +75,10 @@ const SignIn = () => {
           secureTextEntry={true}
           rules={{ required: 'Password is required' }}
         />
-        <CustomButton text="Sign In" onPress={handleSubmit(onSignInPressed)} />
+        <CustomButton
+          text="Sign In"
+          onPress={() => handleSubmit(onSignInPressed)()}
+        />
         <CustomButton
           text="Forget password?"
           onPress={onForgetPasswordPressed}
