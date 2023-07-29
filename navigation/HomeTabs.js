@@ -6,6 +6,7 @@ import Settings from '../screens/Settings.js';
 import Notifications from '../screens/Notifications.js';
 import Profile from '../screens/Profile.js';
 import PostScreen from '../screens/PostScreen.js';
+import DateTime from '../componets/DateTime.js';
 
 const Tab = createBottomTabNavigator();
 const COLORS = {
@@ -120,8 +121,8 @@ function HomeTabs() {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="DateTime"
+        component={DateTime}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
