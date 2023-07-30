@@ -120,7 +120,7 @@ const CustomEventCard = () => {
 
 const styles = StyleSheet.create({
   topContainer: {
-    backgroundColor: COLORS.toSquare,
+    backgroundColor: COLORS.primary,
     height: height * 0.4,
     borderBottomRightRadius: 50,
   },

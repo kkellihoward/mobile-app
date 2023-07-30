@@ -28,6 +28,7 @@ const COLORS = {
   gray: '#433E3E',
   postGray: '#696868',
   DateColor: '#B28FE5',
+  toSquare: '#B28FE5',
   cardColor: '#9969DD',
 };
 const { width, height } = Dimensions.get('window');
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     height: LIST_ITEM_HEIGHT,
     justifyContent: 'center',
     paddingLeft: 20,
-    backgroundColor: COLORS.cardColor,
+    backgroundColor: COLORS.primary,
     borderRadius: 10,
     shadowOpacity: 0.09,
     shadowOffset: {

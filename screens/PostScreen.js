@@ -8,6 +8,7 @@ import {
   ImageBackground,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 
@@ -26,12 +27,21 @@ const COLORS = {
 const { width, height } = Dimensions.get('window');
 
 const Post = () => {
+  const [openCalender, setOpenCalender] = useState(false);
+
+  const handleOpenCalender = () => {
+    setOpenCalender(!openCalender);
+  };
+
   const {
     control,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm();
+  const onPostPressed = (data) => {
+    console.log(data);
+  };
   return (
     <View style={styles.topContainer}>
       <SafeAreaView>
@@ -39,7 +49,7 @@ const Post = () => {
           style={{
             fontSize: 60,
             fontWeight: '800',
-            color: COLORS.white,
+            color: COLORS.toSquare,
             marginLeft: 30,
             marginTop: 30,
             letterSpacing: 3,
@@ -67,7 +77,15 @@ const Post = () => {
           multiline={true}
           type={'textInvitees'}
         />
-        <DateTime></DateTime>
+
+        <DateTime control={control} watch={watch} handleSubmit={handleSubmit} />
+        <View style={{ alignItems: 'center' }}>
+          <CustomButton
+            type="POST"
+            text="Post"
+            onPress={handleSubmit(onPostPressed)}
+          />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -79,7 +97,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   topContainer: {
-    backgroundColor: COLORS.toSquare,
+    backgroundColor: COLORS.white,
     height: height,
     padding: 20,
   },

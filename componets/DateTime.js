@@ -20,26 +20,21 @@ const COLORS = {
   primary: '#7f44d4',
   white: '#fff',
   border: '#e8e8e8',
-  toSquare: '#B28FE5',
+  toSquare: '#a67ee0',
   temp: '#82799f',
 };
 const { width, height } = Dimensions.get('window');
-const DateTime = () => {
-  const today = new Date();
+const DateTime = ({ control, watch }) => {
+  const today = new Date('slectedStartdDate');
+
   const startDate = getFormatedDate(
     today.setDate(today.getDate() + 1),
     'YYYY/MM/DD h:m'
   );
-  const [slectedStartdDate, setSlectedStartdDate] = useState('');
+  const [slectedStartdDate, setSlectedStartdDate] = useState('YYYY/MM/DD h:m');
   const [startedDate, setStartedDate] = useState('12/12/2023');
 
   const [openCalender, setOpenCalender] = useState(false);
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
 
   function handleChangeStartDate(propDate) {
     setStartedDate(propDate);
@@ -52,7 +47,7 @@ const DateTime = () => {
     <SafeAreaView
       style={{
         justifyContent: 'center',
-        backgroundColor: COLORS.toSquare,
+        backgroundColor: COLORS.white,
       }}
     >
       <TouchableOpacity
@@ -70,6 +65,7 @@ const DateTime = () => {
           pointerEvents="none"
         />
       </TouchableOpacity>
+
       <View>
         <Modal animationType="slide" transparent={true} visible={openCalender}>
           <View
@@ -89,21 +85,22 @@ const DateTime = () => {
                   setSlectedStartdDate(date);
                 }}
                 options={{
-                  backgroundColor: COLORS.white,
-                  textHeaderColor: COLORS.main,
-                  textDefaultColor: COLORS.primary,
-                  selectedTextColor: '#fff',
-                  mainColor: COLORS.main,
-                  textSecondaryColor: COLORS.primary,
+                  backgroundColor: COLORS.toSquare,
+                  textHeaderColor: '#fff',
+                  textDefaultColor: '#fff',
+                  selectedTextColor: COLORS.primary,
+                  mainColor: '#fff',
+                  textSecondaryColor: '#fff',
                   borderColor: 'rgba(122, 146, 165, 0.1)',
                 }}
               ></DatePicker>
               <TouchableOpacity onPress={handleOpenCalender}>
                 <Text
                   style={{
-                    color: COLORS.primary,
+                    color: COLORS.white,
                     marginTop: 5,
-                    fontSize: 18,
+                    fontSize: 19,
+                    fontWeight: '500',
                   }}
                 >
                   Close
@@ -119,7 +116,7 @@ const DateTime = () => {
 
 const styles = StyleSheet.create({
   modalView: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.toSquare,
     width: '90%',
     padding: 35,
     alignItems: 'center',

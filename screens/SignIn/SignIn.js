@@ -7,12 +7,13 @@ import {
   Dimensions,
   ScrollView,
   TextInput,
+  FastImage,
 } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 
-import Logo from '../../assets/images/logoSign.png';
+import Logo from '../../assets/images/TaskWise.png';
 import CustomInput from '../../componets/CustomInput';
 import CustomButton from '../../componets/CustomButton';
 
@@ -29,29 +30,7 @@ const SignIn = () => {
   const methods = useForm();
 
   const onSignInPressed = (data, errors) => {
-    // try {
-    //   data.preventDefault();
-    //   const formData = new FormData(data.currentTarget);
-
-    //   const username = formData.get('username');
-    //   const password = formData.get('password');
-
-    //   console.log(username);
-    //   console.log(password);
-    // } catch (err) {
-    //   // handle rejection
-    //   console.error(err);
-    // }
-
-    //console.log(data);
-    //validate
-
     navigation.navigate('HomeTabs');
-  };
-
-  const onForgetPasswordPressed = () => {
-    //logic
-    navigation.navigate('ForgotPassword');
   };
 
   const onSignUpPressed = () => {
@@ -79,13 +58,10 @@ const SignIn = () => {
           text="Sign In"
           onPress={() => handleSubmit(onSignInPressed)()}
         />
+
         <CustomButton
-          text="Forget password?"
-          onPress={onForgetPasswordPressed}
-          type="TERTIAY"
-        />
-        <CustomButton
-          text=" Don't have an account? create one"
+          text=" Don't have an account?
+           create one"
           onPress={onSignUpPressed}
           type="TERTIAY"
           style={styles.create}
@@ -103,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    marginTop: 50,
+    marginTop: 100,
     width: width,
     height: height * 0.3,
     marginBottom: -50,

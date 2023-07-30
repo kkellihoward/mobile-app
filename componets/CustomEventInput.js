@@ -1,6 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
+import { color } from 'react-native-reanimated';
 
 const COLORS = { primary: '#7f44d4', white: '#fff', border: '#e8e8e8' };
 
@@ -10,7 +11,6 @@ const CustomEventInput = ({
   placeholder,
   multiline = false,
   secureTextEntry = false,
-  rules = {},
   type = 'none',
   editable = true,
   selectTextOnFocus = true,
@@ -20,7 +20,6 @@ const CustomEventInput = ({
     <Controller
       control={control}
       name={name}
-      rules={rules}
       render={({
         field: { value, onChange, onBlur },
         fieldState: { error },
@@ -44,6 +43,7 @@ const CustomEventInput = ({
               editable={editable}
               selectTextOnFocus={selectTextOnFocus}
               pointerEvents={pointerEvents}
+              placeholderTextColor={'#778899'}
             />
           </View>
           {error && (
@@ -56,7 +56,7 @@ const CustomEventInput = ({
                 fontSize: 12,
               }}
             >
-              {error.message || 'Error hoooo!'}
+              {error.message || 'Error!'}
             </Text>
           )}
         </>
@@ -67,7 +67,7 @@ const CustomEventInput = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.white,
+    backgroundColor: 'transparent',
     width: '100%',
     borderColor: 'black',
     borderBottomWidth: 2,
