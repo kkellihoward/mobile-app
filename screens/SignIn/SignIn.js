@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 
-import Logo from '../../assets/images/TaskWise.png';
+import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../componets/CustomInput';
 import CustomButton from '../../componets/CustomButton';
 
@@ -39,7 +39,7 @@ const SignIn = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.root}>
-        <Image source={Logo} style={styles.logo} resizeMode="cover"></Image>
+        <Image source={Logo} style={styles.logo} resizeMode="contain"></Image>
 
         <CustomInput
           name="username"
@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     marginTop: 100,
     width: width,
     height: height * 0.3,
-    marginBottom: -50,
   },
 });
 

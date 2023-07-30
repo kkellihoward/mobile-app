@@ -9,7 +9,9 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
+import { Keyboard } from 'react-native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 
 import ModalEvent from '../componets/ModalEvent';
@@ -43,51 +45,57 @@ const Post = () => {
     console.log(data);
   };
   return (
-    <View style={styles.topContainer}>
-      <SafeAreaView>
-        <Text
-          style={{
-            fontSize: 60,
-            fontWeight: '800',
-            color: COLORS.toSquare,
-            marginLeft: 30,
-            marginTop: 30,
-            letterSpacing: 3,
-            marginBottom: 20,
-          }}
-        >
-          Post
-        </Text>
-        <CustomEventInput
-          name="title"
-          placeholder="Enter event title"
-          control={control}
-        />
-        <CustomEventInput
-          name="EventDescription"
-          placeholder="Enter event description"
-          control={control}
-          multiline={true}
-          type="textArea"
-        />
-        <CustomEventInput
-          name="invitees"
-          placeholder="Enter invitees' names"
-          control={control}
-          multiline={true}
-          type={'textInvitees'}
-        />
-
-        <DateTime control={control} watch={watch} handleSubmit={handleSubmit} />
-        <View style={{ alignItems: 'center' }}>
-          <CustomButton
-            type="POST"
-            text="Post"
-            onPress={handleSubmit(onPostPressed)}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.topContainer}>
+        <SafeAreaView>
+          <Text
+            style={{
+              fontSize: 60,
+              fontWeight: '800',
+              color: COLORS.toSquare,
+              marginLeft: 30,
+              marginTop: 30,
+              letterSpacing: 3,
+              marginBottom: 20,
+            }}
+          >
+            Post
+          </Text>
+          <CustomEventInput
+            name="title"
+            placeholder="Enter event title"
+            control={control}
           />
-        </View>
-      </SafeAreaView>
-    </View>
+          <CustomEventInput
+            name="EventDescription"
+            placeholder="Enter event description"
+            control={control}
+            multiline={true}
+            type="textArea"
+          />
+          <CustomEventInput
+            name="invitees"
+            placeholder="Enter invitees' names"
+            control={control}
+            multiline={true}
+            type={'textInvitees'}
+          />
+
+          <DateTime
+            control={control}
+            watch={watch}
+            handleSubmit={handleSubmit}
+          />
+          <View style={{ alignItems: 'center' }}>
+            <CustomButton
+              type="POST"
+              text="Post"
+              onPress={handleSubmit(onPostPressed)}
+            />
+          </View>
+        </SafeAreaView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
