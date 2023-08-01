@@ -43,7 +43,7 @@ const SignUp = () => {
   };
 
   const onSignUpPressed = async(data) => {
-    let { email, password } = data
+    let { username, email, password, repeat_password } = data
 
     try {
       const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/createAccount'; 
