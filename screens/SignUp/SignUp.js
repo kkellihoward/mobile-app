@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Dimensions,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -38,7 +39,6 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   const onSignInPressed = (data) => {
-    console.log(data);
     navigation.navigate('SignIn');
   };
 
@@ -108,7 +108,7 @@ const SignUp = () => {
           }}
         />
         <CustomInput
-          name="emil"
+          name="email"
           placeholder="Email"
           control={control}
           rules={{
@@ -183,12 +183,13 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginTop: height * 0.2,
-    fontSize: 28,
-    fontWeight: 'bold',
+    marginTop: height * 0.15,
+    fontSize: 36,
+    fontWeight: '800',
     color: COLORS.primary,
     margin: 10,
     marginBottom: 20,
+    letterSpacing: 1,
   },
   text: {
     padding: 20,

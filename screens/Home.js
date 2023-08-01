@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import CustomEventCard from '../componets/CustomEventCard';
+import { useForm, Controller, FormProvider } from 'react-hook-form';
 
 const Home = () => {
   return (

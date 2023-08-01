@@ -29,6 +29,7 @@
     "react-native": "0.71.8",
     "react-native-context-menu-view": "^1.10.0",
     "react-native-gesture-handler": "~2.9.0",
+    "react-native-modern-datepicker": "^1.0.0-beta.91",
     "react-native-reanimated": "^2.14.4",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "~3.20.0",
@@ -36,6 +37,18 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-swipe-list-view": "^3.2.9",
     "react-native-web": "~0.18.10"
+  },
+  "browser": {
+    "child_process": false
+  },
+  "resolve": {
+    "extensions": [
+      ".ts",
+      ".js"
+    ],
+    "fallback": {
+      "child_process": false
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

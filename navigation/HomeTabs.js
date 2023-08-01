@@ -6,6 +6,7 @@ import Settings from '../screens/Settings.js';
 import Notifications from '../screens/Notifications.js';
 import Profile from '../screens/Profile.js';
 import PostScreen from '../screens/PostScreen.js';
+import DateTime from '../componets/DateTime.js';
 
 const Tab = createBottomTabNavigator();
 const COLORS = {
@@ -59,7 +60,7 @@ function HomeTabs() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Notifications"
         component={Notifications}
         options={{
@@ -84,7 +85,7 @@ function HomeTabs() {
             </View>
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="PostScreen"
         component={PostScreen}
@@ -119,32 +120,7 @@ function HomeTabs() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                top: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/images/settings.png')}
-                resizeMode="contain"
-                style={{
-                  height: 30,
-                  width: 30,
-                  marginBottom: 10,
-                  tintColor: focused ? COLORS.OnClickColor : COLORS.white,
-                }}
-              />
-            </View>
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="Profile"
         component={Profile}
@@ -158,11 +134,11 @@ function HomeTabs() {
               }}
             >
               <Image
-                source={require('../assets/images/account.png')}
+                source={require('../assets/images/signOut.png')}
                 resizeMode="contain"
                 style={{
-                  height: 30,
-                  width: 30,
+                  height: 35,
+                  width: 35,
                   marginBottom: 10,
                   tintColor: focused ? COLORS.OnClickColor : COLORS.white,
                 }}

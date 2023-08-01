@@ -40,6 +40,20 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
   },
 
+  container_POST: {
+    width: '70%',
+    borderColor: '#A07ADA',
+    borderWidth: 2,
+    backgroundColor: 'transparent',
+  },
+
+  container_LOG: {
+    width: '70%',
+    borderColor: '#A07ADA',
+    borderWidth: 2,
+    backgroundColor: 'transparent',
+  },
+
   container_SECONDARY: {
     backgroundColor: 'transparent',
     borderWidth: 1,
@@ -50,6 +64,16 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: 'bold',
     color: COLORS.white,
+  },
+  text_POST: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+  },
+  text_LOG: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: COLORS.primary,
   },
 
   text_PRIMARY: {

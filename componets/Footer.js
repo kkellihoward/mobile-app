@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { useRef, useState } from "react";
+import { StatusBar } from 'expo-status-bar';
+import { useRef, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,13 +9,13 @@ import {
   Text,
   View,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-const { width, height } = Dimensions.get("window");
-const COLORS = { primary: "#7f44d4", white: "#fff" };
+const { width, height } = Dimensions.get('window');
+const COLORS = { primary: '#7f44d4', white: '#fff' };
 
-import styles from "../componets/styles";
-import { slides } from "../screens/OnboardingScreen";
+import styles from '../componets/styles';
+import { slides } from '../screens/OnboardingScreen';
 
 const Footer = () => {
   const [currentSlidesIndex, setCurrentSlidesIndex] = useState(0);
@@ -47,14 +47,14 @@ const Footer = () => {
     <View
       style={{
         height: height * 0.25,
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
         paddingHorizontal: 20,
       }}
     >
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "center",
+          flexDirection: 'row',
+          justifyContent: 'center',
           marginTop: 20,
         }}
       >
@@ -77,9 +77,9 @@ const Footer = () => {
           <View style={{ height: 50 }}>
             <TouchableOpacity
               style={[styles.btn]}
-              onPress={() => navigation.replace("Home")}
+              onPress={() => navigation.replace('Home')}
             >
-              <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+              <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
                 GET STARTED
               </Text>
             </TouchableOpacity>
@@ -87,12 +87,12 @@ const Footer = () => {
         </View>
       ) : (
         <View style={{ marginBottom: 20 }}>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
               style={[
                 styles.btn,
                 {
-                  backgroundColor: "transparent",
+                  backgroundColor: 'transparent',
                   borderWidth: 1,
                   borderColor: COLORS.primary,
                 },
@@ -102,7 +102,7 @@ const Footer = () => {
               <Text
                 style={{
                   fontSize: 15,
-                  fontWeight: "bold",
+                  fontWeight: 'bold',
                   color: COLORS.primary,
                 }}
               >
@@ -111,7 +111,7 @@ const Footer = () => {
             </TouchableOpacity>
             <View style={{ width: 15 }} />
             <TouchableOpacity style={[styles.btn]} onPress={goNextSlide}>
-              <Text style={{ fontSize: 15, fontWeight: "bold" }}>NEXT</Text>
+              <Text style={{ fontSize: 15, fontWeight: 'bold' }}>NEXT</Text>
             </TouchableOpacity>
           </View>
         </View>
