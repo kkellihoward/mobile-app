@@ -29,9 +29,8 @@ const SignIn = () => {
   //console.log(errors);
   const methods = useForm();
 
-  const onSignInPressed = (data, errors) => {
-    console.log(data);
-    //validate
+  const onSignInPressed = async(data, errors) => {
+    let { email, password } = data
 
     try {
       const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/signin'; 
@@ -74,7 +73,7 @@ const SignIn = () => {
         <Image source={Logo} style={styles.logo} resizeMode="cover"></Image>
 
         <CustomInput
-          name="Email"
+          name="email"
           placeholder="Email"
           control={control}
           rules={{ required: 'Email is required' }}

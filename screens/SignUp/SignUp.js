@@ -42,33 +42,32 @@ const SignUp = () => {
     navigation.navigate('SignIn');
   };
 
-  const onSignUpPressed = (data) => {
-    console.log(data);
-    //logic for validation
+  const onSignUpPressed = async(data) => {
+    let { email, password } = data
 
-        try {
-                const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/createAccount'; 
-                const data = { email, username, password };
-            
-                const response = await axios.post(apiUrl, data, { headers: {
-                  'Content-Type': 'application/json'
-                  }}
-                );
-            
-                if(response.status === 200)
-                {
-                    navigation.navigate('ConfirmEmail');
-                }
-                // Handle the response from the API as needed
-                console.log('API Response:', response.data);
-                
-                // You can return the response data or handle it further as per your requirements
-                return response.data;
-            } catch (error) {
-            // Handle any errors that occurred during the API call
-            console.error('API Error:', error);
-            // throw error;
-            }
+    try {
+      const apiUrl = 'https://bp-api-87a503314fa5.herokuapp.com/user/createAccount'; 
+      const data = { email, username, password };
+  
+      const response = await axios.post(apiUrl, data, { headers: {
+        'Content-Type': 'application/json'
+        }}
+      );
+  
+      if(response.status === 200)
+      {
+          navigation.navigate('ConfirmEmail');
+      }
+      // Handle the response from the API as needed
+      console.log('API Response:', response.data);
+      
+      // You can return the response data or handle it further as per your requirements
+      return response.data;
+    } catch (error) {
+      // Handle any errors that occurred during the API call
+      console.error('API Error:', error);
+      // throw error;
+    }
   };
 
   const onTermsPressed = () => {
