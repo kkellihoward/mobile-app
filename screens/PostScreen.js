@@ -10,9 +10,12 @@ import {
   ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Modal,
 } from 'react-native';
 import { Keyboard } from 'react-native';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
+import DatePicker from 'react-native-modern-datepicker';
+import { getFormatedDate } from 'react-native-modern-datepicker';
 
 import ModalEvent from '../componets/ModalEvent';
 import CustomEventInput from '../componets/CustomEventInput';
@@ -20,21 +23,17 @@ import CustomButton from '../componets/CustomButton';
 import DateTime from '../componets/DateTime';
 
 const COLORS = {
+  main: '#4526a5',
   primary: '#7f44d4',
   white: '#fff',
-  toSquare: '#B28FE5',
-  brownColor: '#433E3E',
+  border: '#e8e8e8',
+  toSquare: '#a67ee0',
+  temp: '#82799f',
 };
 
 const { width, height } = Dimensions.get('window');
 
 const Post = () => {
-  const [openCalender, setOpenCalender] = useState(false);
-
-  const handleOpenCalender = () => {
-    setOpenCalender(!openCalender);
-  };
-
   const {
     control,
     handleSubmit,
@@ -65,6 +64,7 @@ const Post = () => {
             name="title"
             placeholder="Enter event title"
             control={control}
+            rules={{ required: 'Title is required' }}
           />
           <CustomEventInput
             name="EventDescription"
@@ -80,12 +80,7 @@ const Post = () => {
             multiline={true}
             type={'textInvitees'}
           />
-
-          <DateTime
-            control={control}
-            watch={watch}
-            handleSubmit={handleSubmit}
-          />
+          <DateTime control={control} watch={watch} name="date" />
           <View style={{ alignItems: 'center' }}>
             <CustomButton
               type="POST"

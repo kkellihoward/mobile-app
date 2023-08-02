@@ -78,6 +78,9 @@ const styles = StyleSheet.create({
     marginLeft: 33,
     marginTop: 35,
     letterSpacing: 1,
+
+    padding: 10,
+    width: '40%',
   },
   desText: {
     fontSize: 17,

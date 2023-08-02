@@ -24,7 +24,8 @@ const COLORS = {
   temp: '#82799f',
 };
 const { width, height } = Dimensions.get('window');
-const DateTime = ({ control, watch }) => {
+const DateTime = ({ watch, name, control }) => {
+  const { handleSubmit } = useForm();
   const today = new Date('slectedStartdDate');
 
   const startDate = getFormatedDate(
@@ -36,9 +37,16 @@ const DateTime = ({ control, watch }) => {
 
   const [openCalender, setOpenCalender] = useState(false);
 
-  function handleChangeStartDate(propDate) {
-    setStartedDate(propDate);
+  function handleChangeStartDate(date) {
+    setStartedDate(date);
+
+    console.log(date);
   }
+
+  function handleChangeTime(time) {
+    console.log(time);
+  }
+
   const handleOpenCalender = () => {
     setOpenCalender(!openCalender);
   };
@@ -63,7 +71,7 @@ const DateTime = ({ control, watch }) => {
           editable={false}
           selectTextOnFocus={false}
           pointerEvents="none"
-        />
+        ></CustomEventInput>
       </TouchableOpacity>
 
       <View>
@@ -77,10 +85,9 @@ const DateTime = ({ control, watch }) => {
           >
             <View style={styles.modalView}>
               <DatePicker
-                mode="datepicker"
-                mainimumDate={startDate}
-                selected={startedDate}
+                selected={slectedStartdDate}
                 onDateChange={handleChangeStartDate}
+                onTimeChange={handleChangeTime}
                 onSelectedChange={(date) => {
                   setSlectedStartdDate(date);
                 }}
@@ -94,6 +101,7 @@ const DateTime = ({ control, watch }) => {
                   borderColor: 'rgba(122, 146, 165, 0.1)',
                 }}
               ></DatePicker>
+
               <TouchableOpacity onPress={handleOpenCalender}>
                 <Text
                   style={{
