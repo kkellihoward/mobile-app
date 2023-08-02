@@ -49,20 +49,28 @@ const ModalEvent = (props) => {
       </TouchableWithoutFeedback>
 
       <View style={styles.container}>
-        <Text style={styles.desTitle}>Description</Text>
+        <ScrollView style={{}}>
+          <Text style={styles.desTitle}>Description</Text>
 
-        <View style={{ width: '90%' }}>
-          <Text adjustsFontSizeToFit style={styles.desText}>
-            {props.description}
-          </Text>
-        </View>
-        <Text style={styles.desTitle}>Invitees</Text>
-        <View style={{ width: '90%' }}>
-          <FlatList
-            data={props.invitees}
-            renderItem={({ item }) => <Text>{props.id}</Text>}
-          ></FlatList>
-        </View>
+          <View style={{ width: '90%' }}>
+            <Text adjustsFontSizeToFit style={styles.desText}>
+              {props.description}
+            </Text>
+          </View>
+
+          <Text style={styles.desTitle}>Invitees</Text>
+          <View style={{ width: '90%', paddingBottom: 60 }}>
+            <Text adjustsFontSizeToFit style={styles.desText}>
+              {props.invitees}
+            </Text>
+          </View>
+          <Text style={styles.desTitle}>Date & time</Text>
+          <View style={{ width: '90%', paddingBottom: 60 }}>
+            <Text adjustsFontSizeToFit style={styles.desText}>
+              {props.dataOnly} {props.timeOnly}
+            </Text>
+          </View>
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -73,8 +81,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     fontSize: 22,
     textAlign: 'left',
-    color: COLORS.primary,
-    fontWeight: '500',
+    color: COLORS.toSquare,
+    fontWeight: '800',
     marginLeft: 33,
     marginTop: 35,
     letterSpacing: 1,
@@ -89,6 +97,7 @@ const styles = StyleSheet.create({
     marginLeft: 43,
     marginTop: 5,
     textAlign: 'left',
+    fontWeight: '500',
   },
   container: {
     height: height * 0.4,

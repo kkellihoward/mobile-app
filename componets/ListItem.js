@@ -37,11 +37,27 @@ const TRANSLATE_X_THRESHOLD = -width * 0.2;
 const lastTap = null;
 let isDouble = 0;
 
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
 const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
   const [modalComponentVisibility, setModalComponentVisibility] =
     useState(false);
 
-  const dateSplit = event.date.split(',');
+  const dateSplit = event.date.split('/');
+
   const translateX = useSharedValue(0);
   const itemHeight = useSharedValue(LIST_ITEM_HEIGHT);
   const marginVertical = useSharedValue(10);
@@ -106,8 +122,9 @@ const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
       {modalComponentVisibility && (
         <ModalEvent
           description={event.description}
-          invitees={event.invitees}
-          event={event}
+          invitees={event.invitees.join(',  ')}
+          dataOnly={event.date}
+          timeOnly={event.time}
         />
       )}
 
@@ -133,11 +150,11 @@ const ListItem = ({ event, onDismiss, simultaneousHandlers }) => {
               >
                 <Text style={[styles.squareDate, styles.squareDateExstra]}>
                   {' '}
-                  {dateSplit[1]}{' '}
+                  {dateSplit[2]}{' '}
                 </Text>
                 {'\n'}
 
-                {dateSplit[0].substring(0, 3)}
+                {monthNames[parseInt(dateSplit[1]) - 1]}
               </Text>
             </View>
             <Text style={styles.eventTitle}>{event.title}</Text>

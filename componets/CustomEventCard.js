@@ -14,7 +14,8 @@ import { useFonts } from 'expo-font';
 export const EVENTS = [
   {
     title: 'QQQQQQTechXpo 2023: Unveiling the Future',
-    date: 'August,10,2023',
+    date: '2023/08/23',
+    time: '10:25',
     description: 'TechXpo 2023: Unveiling the Future',
     id: 0,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
@@ -22,28 +23,29 @@ export const EVENTS = [
   {
     title: 'Gastronomy Fest: A Culinary Extravaganza',
     description:
-      'TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future',
-    date: 'July,28,2023',
+      'e 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the ,TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future,e 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the ,TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Futu',
+    date: '2023/02/04',
+    time: '20:00',
     id: 1,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Artisanal Crafts Fair: Celebrating Creativity',
     description: 'TechXpo 2023: Unveiling the Future',
-    date: 'September,17,2023',
+    date: '2023/02/15',
     id: 2,
-    invitees: ['1', ['john1', 'john2', 'john3', 'john4', 'john5']],
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     description: 'TechXpo 2023: Unveiling the Future',
-    date: 'october,7,2023',
+    date: '2023/01/15',
     id: 3,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
+    date: '2023/12/07',
     id: 4,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
@@ -55,34 +57,39 @@ export const EVENTS = [
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
+    date: '2023/12/07',
     id: 6,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,,2023',
+    date: '2023/12/07',
     id: 7,
+    invitees: ['john1'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
+    date: '2023/12/07',
     id: 8,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
+    date: '2023/12/07',
     id: 9,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'october,7,2023',
+    date: '2023/12/07',
     id: 10,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'october,7,2023',
+    date: '2023/12/07',
     id: 11,
+    invitees: [],
   },
 ];
 const { width, height } = Dimensions.get('window');
