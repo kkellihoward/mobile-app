@@ -15,11 +15,13 @@ const CustomEventInput = ({
   editable = true,
   selectTextOnFocus = true,
   pointerEvents = 'auto',
+  rules = {},
 }) => {
   return (
     <Controller
       control={control}
       name={name}
+      rules={rules}
       render={({
         field: { value, onChange, onBlur },
         fieldState: { error },

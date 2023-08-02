@@ -13,76 +13,83 @@ import { useFonts } from 'expo-font';
 
 export const EVENTS = [
   {
-    title: 'TechXpo 2023: Unveiling the Future',
-    date: 'August,10,2023',
+    title: 'QQQQQQTechXpo 2023: Unveiling the Future',
+    date: '2023/08/23',
+    time: '10:25',
     description: 'TechXpo 2023: Unveiling the Future',
-    id: '0',
+    id: 0,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Gastronomy Fest: A Culinary Extravaganza',
     description:
-      'TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future',
-    date: 'July,28,2023',
-    id: '1',
+      'e 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the ,TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future,e 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the ,TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Future TechXpo 2023: Unveiling the Futu',
+    date: '2023/02/04',
+    time: '20:00',
+    id: 1,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Artisanal Crafts Fair: Celebrating Creativity',
     description: 'TechXpo 2023: Unveiling the Future',
-    date: 'September,17,2023',
-    id: '2',
-    invitees: ['1', ['john1', 'john2', 'john3', 'john4', 'john5']],
+    date: '2023/02/15',
+    id: 2,
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     description: 'TechXpo 2023: Unveiling the Future',
-    date: 'october,7,2023',
-    id: '3',
+    date: '2023/01/15',
+    id: 3,
+    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
+  },
+  {
+    title: 'Global Sustainability Summit 2023',
+    date: '2023/12/07',
+    id: 4,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
     date: 'October,7,2023',
-    id: '4',
+    id: 5,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
-    id: '5',
+    date: '2023/12/07',
+    id: 6,
     invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
-    id: '6',
-    invitees: ['john1', 'john2', 'john3', 'john4', 'john5'],
+    date: '2023/12/07',
+    id: 7,
+    invitees: ['john1'],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,,2023',
-    id: '7',
+    date: '2023/12/07',
+    id: 8,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
-    id: '8',
+    date: '2023/12/07',
+    id: 9,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'October,7,2023',
-    id: '9',
+    date: '2023/12/07',
+    id: 10,
+    invitees: [],
   },
   {
     title: 'Global Sustainability Summit 2023',
-    date: 'october,7,2023',
-    id: '10',
-  },
-  {
-    title: 'Global Sustainability Summit 2023',
-    date: 'october,7,2023',
-    id: '11',
+    date: '2023/12/07',
+    id: 11,
+    invitees: [],
   },
 ];
 const { width, height } = Dimensions.get('window');
@@ -94,25 +101,43 @@ const COLORS = {
 };
 
 const CustomEventCard = () => {
-  const onDismiss = useCallback((event) => {
-    setEvent((event) => event.filter((item) => item.id !== event.id));
-  }, []);
-  const [event, setEvent] = useState(EVENTS);
+  const [events, setEvent] = useState(EVENTS);
   const scrollRef = useRef(null);
+  const onDismiss = useCallback((event) => {
+    //const temp = events.filter((item) => item.id !== event.id);
+    // console.log(item.id);
+
+    setEvent((events) => events.filter((item) => item.id !== event.id));
+  }, []);
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.topContainer}>
         <Text style={styles.allEventText}>All {'\n'}Events</Text>
       </View>
+
       <ScrollView style={{ flex: 1 }} ref={scrollRef}>
-        {event.map((event) => (
-          <ListItem
-            key={event.id}
-            event={event}
-            onDismiss={onDismiss}
-            simultaneousHandlers={scrollRef}
-          />
-        ))}
+        {events.length <= 0 ? (
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Image
+              source={require('../assets/images/empty3.png')}
+              style={{
+                height: height * 0.5,
+                width: width * 0.7,
+                resizeMode: 'contain',
+                //marginLeft: 30,r
+              }}
+            ></Image>
+          </View>
+        ) : (
+          events.map((event) => (
+            <ListItem
+              key={event.id}
+              event={event}
+              onDismiss={onDismiss}
+              simultaneousHandlers={scrollRef}
+            />
+          ))
+        )}
       </ScrollView>
     </View>
   );
